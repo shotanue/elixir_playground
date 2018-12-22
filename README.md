@@ -1,7 +1,7 @@
 # ElixirPlayground
 
-#### Ninty Nine
-Elixirのエクササイズ
+## Ninety Nine
+- Ninety Nine系のElixir版
 https://github.com/shotanue/elixir_playground/blob/master/lib/e99.ex
 
 元ネタは下記のURL
