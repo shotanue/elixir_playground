@@ -173,4 +173,22 @@ defmodule E99 do
       list |> List.foldl([], fn (x,acc) -> [x] ++ acc  end)
     end
   end
+
+  defmodule P6 do
+    @doc """
+    P06 (*) Find out whether a list is a palindrome.
+    A palindrome can be read forward or backward; e.g. (x a m a x).
+    iex> E99.P6.is_palindrome([1,2,3,2,1])
+    true
+    
+    iex> E99.P6.is_palindrome([1,2,3])
+    false
+    
+    iex> E99.P6.is_palindrome(["a", "b", "b", "a"])
+    true
+    """
+    def is_palindrome(list) do
+      list === list |> List.foldl([], fn (x,acc) -> [x] ++ acc  end)
+    end
+  end
 end

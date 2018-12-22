@@ -5,4 +5,5 @@ defmodule E99Test do
   doctest E99.P3
   doctest E99.P4
   doctest E99.P5
+  doctest E99.P6
 end
