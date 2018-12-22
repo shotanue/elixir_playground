@@ -8,10 +8,10 @@ defmodule E99 do
     @doc """
       iex> E99.P1.last([1,2,3,4])
       {:ok, 4}
-    
+
       iex> E99.P1.last([1])
       {:ok, 1}
-      
+
       iex> E99.P1.last([])
       {:error, ""}
     """
@@ -43,7 +43,7 @@ defmodule E99 do
     @doc """
     P03 (*) Find the K'th element of a list.
     The first element in the list is number 1.
-    
+
     iex> E99.P3.element_at(["a","b","c","d","e","f"], 4)
     {:ok, "d"}
     iex> E99.P3.element_at(["a","b","c","d","e","f"],10)
@@ -65,7 +65,7 @@ defmodule E99 do
     別解 下記参考
     indexを減らしていく方式
     https://github.com/dwango/S99/blob/master/src/main/scala/jp/co/dwango/s99/P03.scala
-    
+
     iex> E99.P3.element_at2(["a","b","c","d","e","f"], 4)
     {:ok, "d"}
     iex> E99.P3.element_at2(["a","b","c","d","e","f"],10)
@@ -83,7 +83,7 @@ defmodule E99 do
   defmodule P4 do
     @doc """
     P04 (*) Find the number of elements of a list.
-    
+
     iex> E99.P4.len([])
     0
     iex> E99.P4.len(["a","b","c","d"])
@@ -100,8 +100,8 @@ defmodule E99 do
     @doc """
     末尾再帰版
     参考, http://aperiodic.net/phil/scala/s-99/p04.scala
-    
-    iex> alias E99.P4 #エイリアスを使うと短く呼べる 
+
+    iex> alias E99.P4 #エイリアスを使うと短く呼べる
     iex> P4.len2([])
     0
     iex> P4.len2(["a","b","c","d"])
@@ -118,26 +118,26 @@ defmodule E99 do
       end
     end
   end
-  
+
   defmodule P5 do
     @doc """
     P05 (*) Reverse a list.
     ## Examples
     iex> E99.P5.reverse([1,2,3])
     [3,2,1]
-    
+
     iex> E99.P5.reverse [1,2,3]
     [3, 2, 1]
-    
+
     iex> E99.P5.reverse []
     []
-    
+
     iex> E99.P5.reverse [1]
     [1]
-    
+
     iex> E99.P5.reverse [1,2]
     [2, 1]
-    
+
     """
     def reverse(list) do
       reverseR(list,[])
@@ -148,7 +148,29 @@ defmodule E99 do
         [x] -> [x] ++ acc
         [x|xs] -> reverseR(xs, [x] ++ acc)
       end
-    end 
-    
+    end
+
+    @doc """
+    fold left ver
+    ## Examples
+    iex> E99.P5.reverseFold([1,2,3])
+    [3,2,1]
+
+    iex> E99.P5.reverseFold([1,2,3])
+    [3, 2, 1]
+
+    iex> E99.P5.reverseFold([])
+    []
+
+    iex> E99.P5.reverseFold([1])
+    [1]
+
+    iex> E99.P5.reverseFold([1,2])
+    [2, 1]
+
+    """
+    def reverseFold(list) do
+      list |> List.foldl([], fn (x,acc) -> [x] ++ acc  end)
+    end
   end
 end
