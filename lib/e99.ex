@@ -6,12 +6,13 @@ defmodule E99 do
 
   defmodule P1 do
     @doc """
-    ## Examples
-      iex(1)> E99.P1.last([1,2,3,4])
+      iex> E99.P1.last([1,2,3,4])
       {:ok, 4}
-      iex(2)> E99.P1.last([1])
+    
+      iex> E99.P1.last([1])
       {:ok, 1}
-      iex(3)> E99.P1.last([])
+      
+      iex> E99.P1.last([])
       {:error, ""}
     """
     def last([x]), do: {:ok, x}
@@ -21,7 +22,6 @@ defmodule E99 do
 
   defmodule P2 do
     @doc """
-    ## Examples
       iex> E99.P2.but_last [1]
       {:ok, 1}
       iex> E99.P2.but_last [2]
@@ -43,7 +43,7 @@ defmodule E99 do
     @doc """
     P03 (*) Find the K'th element of a list.
     The first element in the list is number 1.
-    ## Examples
+    
     iex> E99.P3.element_at(["a","b","c","d","e","f"], 4)
     {:ok, "d"}
     iex> E99.P3.element_at(["a","b","c","d","e","f"],10)
@@ -65,7 +65,7 @@ defmodule E99 do
     別解 下記参考
     indexを減らしていく方式
     https://github.com/dwango/S99/blob/master/src/main/scala/jp/co/dwango/s99/P03.scala
-    ## Examples
+    
     iex> E99.P3.element_at2(["a","b","c","d","e","f"], 4)
     {:ok, "d"}
     iex> E99.P3.element_at2(["a","b","c","d","e","f"],10)
@@ -76,6 +76,44 @@ defmodule E99 do
         [x | _] when index === 1 -> {:ok, x}
         [_ | xs] when index > 1 -> element_at2(xs, index - 1)
         _ -> {:error, nil}
+      end
+    end
+  end
+
+  defmodule P4 do
+    @doc """
+    P04 (*) Find the number of elements of a list.
+    
+    iex> E99.P4.len([])
+    0
+    iex> E99.P4.len(["a","b","c","d"])
+    4
+    """
+    def len(list) do
+      case list do
+        [] -> 0
+        [_x] -> 1
+        [_x|xs] -> 1 + len(xs)
+      end
+    end
+
+    @doc """
+    末尾再帰版
+    参考, http://aperiodic.net/phil/scala/s-99/p04.scala
+    
+    iex> E99.P4.len2([])
+    0
+    iex> E99.P4.len2(["a","b","c","d"])
+    4
+    """
+    def len2(list) do
+      lenR(0, list)
+    end
+    defp lenR(result, list) do
+      case list do
+        nil -> result
+        [] -> result
+        [_x|xs] -> lenR(result + 1, xs)
       end
     end
   end
