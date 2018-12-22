@@ -2,7 +2,7 @@
 
 #### Ninty Nine
 Elixirのエクササイズ
-lib/e99.ex
+https://github.com/shotanue/elixir_playground/blob/master/lib/e99.ex
 
 元ネタは下記のURL
 [RomaniukVadim/Ninety-Nine-Erlang-Problems](https://github.com/RomaniukVadim/Ninety-Nine-Erlang-Problems)
