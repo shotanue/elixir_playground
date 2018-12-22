@@ -101,9 +101,10 @@ defmodule E99 do
     末尾再帰版
     参考, http://aperiodic.net/phil/scala/s-99/p04.scala
     
-    iex> E99.P4.len2([])
+    iex> alias E99.P4 #エイリアスを使うと短く呼べる 
+    iex> P4.len2([])
     0
-    iex> E99.P4.len2(["a","b","c","d"])
+    iex> P4.len2(["a","b","c","d"])
     4
     """
     def len2(list) do
@@ -116,5 +117,38 @@ defmodule E99 do
         [_x|xs] -> lenR(result + 1, xs)
       end
     end
+  end
+  
+  defmodule P5 do
+    @doc """
+    P05 (*) Reverse a list.
+    ## Examples
+    iex> E99.P5.reverse([1,2,3])
+    [3,2,1]
+    
+    iex> E99.P5.reverse [1,2,3]
+    [3, 2, 1]
+    
+    iex> E99.P5.reverse []
+    []
+    
+    iex> E99.P5.reverse [1]
+    [1]
+    
+    iex> E99.P5.reverse [1,2]
+    [2, 1]
+    
+    """
+    def reverse(list) do
+      reverseR(list,[])
+    end
+    defp reverseR(list ,acc)do
+      case list do
+        [] -> acc
+        [x] -> [x] ++ acc
+        [x|xs] -> reverseR(xs, [x] ++ acc)
+      end
+    end 
+    
   end
 end
