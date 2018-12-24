@@ -23,3 +23,5 @@ erl_crash.dump
 elixir_playground-*.tar
 
 /.elixir_ls/
+
+.vscode/
