@@ -93,7 +93,7 @@ defmodule E99 do
       case list do
         [] -> 0
         [_x] -> 1
-        [_x|xs] -> 1 + len(xs)
+        [_x | xs] -> 1 + len(xs)
       end
     end
 
@@ -110,11 +110,12 @@ defmodule E99 do
     def len2(list) do
       lenR(0, list)
     end
+
     defp lenR(result, list) do
       case list do
         nil -> result
         [] -> result
-        [_x|xs] -> lenR(result + 1, xs)
+        [_x | xs] -> lenR(result + 1, xs)
       end
     end
   end
@@ -140,13 +141,14 @@ defmodule E99 do
 
     """
     def reverse(list) do
-      reverseR(list,[])
+      reverseR(list, [])
     end
-    defp reverseR(list ,acc)do
+
+    defp reverseR(list, acc) do
       case list do
         [] -> acc
         [x] -> [x] ++ acc
-        [x|xs] -> reverseR(xs, [x] ++ acc)
+        [x | xs] -> reverseR(xs, [x] ++ acc)
       end
     end
 
@@ -170,7 +172,7 @@ defmodule E99 do
 
     """
     def reverseFold(list) do
-      list |> List.foldl([], fn (x,acc) -> [x] ++ acc  end)
+      list |> List.foldl([], fn x, acc -> [x] ++ acc end)
     end
   end
 
@@ -180,15 +182,15 @@ defmodule E99 do
     A palindrome can be read forward or backward; e.g. (x a m a x).
     iex> E99.P6.is_palindrome([1,2,3,2,1])
     true
-    
+
     iex> E99.P6.is_palindrome([1,2,3])
     false
-    
+
     iex> E99.P6.is_palindrome(["a", "b", "b", "a"])
     true
     """
     def is_palindrome(list) do
-      list === list |> List.foldl([], fn (x,acc) -> [x] ++ acc  end)
+      list === list |> List.foldl([], fn x, acc -> [x] ++ acc end)
     end
   end
 end
