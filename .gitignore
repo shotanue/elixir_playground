@@ -25,3 +25,7 @@ elixir_playground-*.tar
 /.elixir_ls/
 
 .vscode/
+
+.idea
+
+elixir_playground.iml
