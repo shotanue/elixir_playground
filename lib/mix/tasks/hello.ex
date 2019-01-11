@@ -5,7 +5,7 @@ defmodule Mix.Tasks.Hello do
   
   # shortdocで mix helpした時のコメントを書ける
   @shortdoc "my first task"
-  def run(_) do
-    IO.puts ElixirPlayground.helloWorld()
+  def run(someone) do
+    IO.puts ElixirPlayground.helloWorld(someone)
   end
 end

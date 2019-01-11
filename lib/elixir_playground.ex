@@ -19,10 +19,10 @@ defmodule ElixirPlayground do
   @doc """
   Hello world.
   
-  iex> ElixirPlayground.helloWorld
-  :helloworld
+    iex> ElixirPlayground.helloWorld("John Do")
+    "Hello, John Do."
   """
-  def helloWorld do
-    :helloworld
+  def helloWorld(someone) do
+    "Hello, #{someone}."
   end
 end
