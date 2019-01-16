@@ -6,6 +6,7 @@ defmodule MyServer do
     children = [
       {Plug.Cowboy, scheme: :http, plug: MyServer.HelloWorldPlug, options: [port: 8080]}
     ]
+
     opts = [strategy: :one_for_one, name: MyServer.Supervisor]
 
     Logger.info("Starting application...")
