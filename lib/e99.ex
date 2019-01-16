@@ -193,18 +193,38 @@ defmodule E99 do
       list === list |> List.foldl([], fn x, acc -> [x] ++ acc end)
     end
   end
-  
+
   defmodule P7 do
     @doc """
     P07 (**) Flatten a nested list structure.
     Transform a list, possibly holding lists as elements into a `flat' list by replacing each list with its elements (recursively).
-    
+
     iex> E99.P7.flatten(["a",["b",["c","a","d"],"e"]])
     ["a","b","c","a","d","e"]
     """
     def flatten(nested_list) do
       # koreha.....
-      List.flatten nested_list
+      List.flatten(nested_list)
+    end
+
+    @doc """
+    see: https://github.com/dwango/S99/blob/master/src/main/scala/jp/co/dwango/s99/P07.scala
+    
+    iex> E99.P7.flatten2(["a",["b",["c","a","d"],"e"]])
+    ["a","b","c","a","d","e"]
+    """
+    def flatten2(nested_list) do
+      do_flatten(nested_list)
+    end
+    defp do_flatten(list) do
+      case list do
+        # do_flatten を処理側で2つ繋げる発想が出てこなかった
+        # head がlistだったらこいつを再帰して2番目のパターンに持っていく
+        # 末尾再帰ではないので、巨大なデータを入れるとダメそう
+        [h | t] when is_list(h) -> do_flatten(h) ++ do_flatten(t)
+        [x | xs] -> [x] ++ do_flatten(xs)
+        [] -> []
+      end
     end
   end
 end
