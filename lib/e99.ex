@@ -193,4 +193,18 @@ defmodule E99 do
       list === list |> List.foldl([], fn x, acc -> [x] ++ acc end)
     end
   end
+  
+  defmodule P7 do
+    @doc """
+    P07 (**) Flatten a nested list structure.
+    Transform a list, possibly holding lists as elements into a `flat' list by replacing each list with its elements (recursively).
+    
+    iex> E99.P7.flatten(["a",["b",["c","a","d"],"e"]])
+    ["a","b","c","a","d","e"]
+    """
+    def flatten(nested_list) do
+      # koreha.....
+      List.flatten nested_list
+    end
+  end
 end
