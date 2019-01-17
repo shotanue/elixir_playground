@@ -191,8 +191,9 @@ defmodule E99 do
     true
     """
     def is_palindrome(list) do
-      list === list
-               |> List.foldl([], fn x, acc -> [x] ++ acc end)
+      list ===
+        list
+        |> List.foldl([], fn x, acc -> [x] ++ acc end)
     end
   end
 
@@ -211,13 +212,14 @@ defmodule E99 do
 
     @doc """
     see: https://github.com/dwango/S99/blob/master/src/main/scala/jp/co/dwango/s99/P07.scala
-    
+
     iex> E99.P7.flatten2(["a",["b",["c","a","d"],"e"]])
     ["a","b","c","a","d","e"]
     """
     def flatten2(nested_list) do
       do_flatten(nested_list)
     end
+
     defp do_flatten(list) do
       case list do
         # do_flatten を処理側で2つ繋げる発想が出てこなかった
@@ -229,6 +231,7 @@ defmodule E99 do
       end
     end
   end
+
   defmodule P8 do
     @doc """
     (**) Eliminate consecutive duplicates of list elements.
@@ -238,19 +241,19 @@ defmodule E99 do
     iex> E99.P8.compress([:a, :a, :a, :a, :b, :c, :c, :a, :a, :d, :e, :e, :e, :e])
     [:a, :b, :c, :a, :d, :e]
     """
-    def compress(list)do
+    def compress(list) do
       do_compress(list, [])
     end
 
     defp do_compress(list, acc) do
-      last = acc
-             |> List.last
+      last =
+        acc
+        |> List.last()
 
       case list do
         [] -> acc
-        [x | xs] when last === x -> do_compress(xs, acc ++ [x])
-        [x | xs] when acc === [] -> do_compress(xs, [x])
-        [_x | xs] -> do_compress(xs, acc)
+        [x | xs] when last === x -> do_compress(xs, acc)
+        [x | xs] -> do_compress(xs, acc ++ [x])
       end
     end
   end
