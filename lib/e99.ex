@@ -172,7 +172,8 @@ defmodule E99 do
 
     """
     def reverseFold(list) do
-      list |> List.foldl([], fn x, acc -> [x] ++ acc end)
+      list
+      |> List.foldl([], fn x, acc -> [x] ++ acc end)
     end
   end
 
@@ -190,7 +191,8 @@ defmodule E99 do
     true
     """
     def is_palindrome(list) do
-      list === list |> List.foldl([], fn x, acc -> [x] ++ acc end)
+      list === list
+               |> List.foldl([], fn x, acc -> [x] ++ acc end)
     end
   end
 
@@ -224,6 +226,31 @@ defmodule E99 do
         [h | t] when is_list(h) -> do_flatten(h) ++ do_flatten(t)
         [x | xs] -> [x] ++ do_flatten(xs)
         [] -> []
+      end
+    end
+  end
+  defmodule P8 do
+    @doc """
+    (**) Eliminate consecutive duplicates of list elements.
+    If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.
+    Example:
+
+    iex> E99.P8.compress([:a, :a, :a, :a, :b, :c, :c, :a, :a, :d, :e, :e, :e, :e])
+    [:a, :b, :c, :a, :d, :e]
+    """
+    def compress(list)do
+      do_compress(list, [])
+    end
+
+    defp do_compress(list, acc) do
+      last = acc
+             |> List.last
+
+      case list do
+        [] -> acc
+        [x | xs] when last === x -> do_compress(xs, acc ++ [x])
+        [x | xs] when acc === [] -> do_compress(xs, [x])
+        [_x | xs] -> do_compress(xs, acc)
       end
     end
   end
