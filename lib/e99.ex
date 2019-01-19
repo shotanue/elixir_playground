@@ -108,14 +108,14 @@ defmodule E99 do
     4
     """
     def len2(list) do
-      lenR(0, list)
+      do_len2(0, list)
     end
 
-    defp lenR(result, list) do
+    defp do_len2(result, list) do
       case list do
         nil -> result
         [] -> result
-        [_x | xs] -> lenR(result + 1, xs)
+        [_x | xs] -> do_len2(result + 1, xs)
       end
     end
   end
@@ -155,23 +155,23 @@ defmodule E99 do
     @doc """
     fold left ver
     ## Examples
-    iex> E99.P5.reverseFold([1,2,3])
+    iex> E99.P5.fold_reverse([1,2,3])
     [3,2,1]
 
-    iex> E99.P5.reverseFold([1,2,3])
+    iex> E99.P5.fold_reverse([1,2,3])
     [3, 2, 1]
 
-    iex> E99.P5.reverseFold([])
+    iex> E99.P5.fold_reverse([])
     []
 
-    iex> E99.P5.reverseFold([1])
+    iex> E99.P5.fold_reverse([1])
     [1]
 
-    iex> E99.P5.reverseFold([1,2])
+    iex> E99.P5.fold_reverse([1,2])
     [2, 1]
 
     """
-    def reverseFold(list) do
+    def fold_reverse(list) do
       list
       |> List.foldl([], fn x, acc -> [x] ++ acc end)
     end
@@ -206,7 +206,7 @@ defmodule E99 do
     ["a","b","c","a","d","e"]
     """
     def flatten(nested_list) do
-      # koreha.....
+      # これは.....
       List.flatten(nested_list)
     end
 
@@ -265,7 +265,7 @@ defmodule E99 do
     """
     def fold_compress(list) do
       list
-      |> List.foldl([], fn x, acc -> if(List.last(acc) !== x, do: acc ++ [x], else: acc) end)
+      |> List.foldl([], fn x, acc -> if(List.last(acc) === x, do: acc, else: acc ++ [x]) end)
     end
   end
 end
