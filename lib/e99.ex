@@ -256,5 +256,16 @@ defmodule E99 do
         [x | xs] -> do_compress(xs, acc ++ [x])
       end
     end
+
+    @doc """
+    fold left version.
+
+    iex> E99.P8.fold_compress([:a, :a, :a, :a, :b, :c, :c, :a, :a, :d, :e, :e, :e, :e])
+    [:a, :b, :c, :a, :d, :e]
+    """
+    def fold_compress(list) do
+      list
+      |> List.foldl([], fn x, acc -> if(List.last(acc) !== x, do: acc ++ [x], else: acc) end)
+    end
   end
 end
