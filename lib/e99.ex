@@ -118,6 +118,20 @@ defmodule E99 do
         [_x | xs] -> do_len2(result + 1, xs)
       end
     end
+
+    @doc """
+    fold left ver.
+
+    iex> alias E99.P4 #エイリアスを使うと短く呼べる
+    iex> P4.f_len([])
+    0
+    iex> P4.f_len(["a","b","c"])
+    3
+    """
+    def f_len(list) do
+      list
+      |> List.foldl(0, fn _x, acc -> acc + 1 end)
+    end
   end
 
   defmodule P5 do
