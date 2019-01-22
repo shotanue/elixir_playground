@@ -279,7 +279,35 @@ defmodule E99 do
     """
     def fold_compress(list) do
       list
-      |> List.foldl([], fn x, acc -> if(List.last(acc) === x, do: acc, else: acc ++ [x]) end)
+      |> List.foldl([], fn x, acc -> if List.last(acc) === x, do: acc, else: acc ++ [x] end)
+    end
+  end
+
+  defmodule P9 do
+    @doc """
+    P09 (**) Pack consecutive duplicates of list elements into sublists.
+    If a list contains repeated elements they should be placed in separate sublists.
+
+    iex> E99.P9.pack([:a, :a, :a, :a, :b, :c, :c, :a, :a, :d, :e, :e, :e, :e])
+    [[:a, :a, :a, :a], [:b], [:c, :c], [:a, :a], [:d], [:e, :e, :e, :e]]
+    """
+    def pack(list) do
+      if length(list) === 0  do
+        []
+      else
+        # 違う奴が来るまで再帰する
+        {packed, next} = span(list)
+
+        if length(next) === 0 do
+          list(packed)
+        else
+          packed ++ pack(next)
+        end
+      end
+    end
+
+    defp span(list) do
+
     end
   end
 end
