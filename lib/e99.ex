@@ -296,18 +296,21 @@ defmodule E99 do
         []
       else
         # 違う奴が来るまで再帰する
-        {packed, next} = span(list)
+        {packed, next} = list
+                          # take_whileだとnextが取れない
+                         |> Enum.take_while(
+                              fn x ->
+                              IO.inspect(x)
+                                List.first(list) === x
+                              end
+                            )
 
         if length(next) === 0 do
-          list(packed)
+          [packed]
         else
           packed ++ pack(next)
         end
       end
-    end
-
-    defp span(list) do
-
     end
   end
 end
